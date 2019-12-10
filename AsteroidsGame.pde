@@ -1,17 +1,29 @@
-Spaceship joe = new Spaceship();
+int level = 1;
 boolean accel;
 boolean right;
 boolean left;
 boolean hyperSpace;
-Star[] sky = new Star[30];
+public int sizeX = (level + 2) * 100;
+public int sizeY = (level + 2) * 100;
+Star[] sky = new Star[(sizeX * sizeY) / 3000];
+Asteroid[] rocks = new Asteroid[(int)(sizeX * sizeY / 12000)];
+Spaceship joe = new Spaceship();
+Asteroid bob = new Asteroid();
+
+
+public void settings(){
+  size((int)sizeX, (int)sizeY);  
+}
 
 public void setup() 
 {
   frameRate(60);
   background(0);
-  size(300, 300);
   for(int i = 0; i < sky.length; i++){
     sky[i] = new Star();
+  }
+  for(int i = 0; i < rocks.length; i++){
+    rocks[i] = new Asteroid();
   }
 }
 public void draw() 
@@ -20,26 +32,29 @@ public void draw()
   for(int i = 0; i < sky.length; i++){
     sky[i].show();
   }
+  for(int i = 0; i < rocks.length; i++){
+    rocks[i].move();
+    rocks[i].show();
+  }
   if(right == true){
     joe.turn(5);
-    println("RIGHT");
   }
   if(left == true){
     joe.turn(-5);
-    println("LEFT");
   }
   if(accel == true){
-    joe.accelerate(0.1);
-    println("UP");
+    joe.accelerate(0.07);
   }
   if(hyperSpace == true){
     joe.hyper();
     for(int i = 0; i < sky.length; i++){
       sky[i] = new Star();
     }
+    for(int i = 0; i < rocks.length; i++){
+      rocks[i] = new Asteroid();
+    }
     hyperSpace = false;
   }
-
   joe.move();
   joe.show();
 }
