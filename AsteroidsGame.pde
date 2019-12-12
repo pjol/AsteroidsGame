@@ -9,6 +9,7 @@ Star[] sky = new Star[(sizeX * sizeY) / 3000];
 Asteroid[] rocks = new Asteroid[(int)(sizeX * sizeY / 12000)];
 Spaceship joe = new Spaceship();
 Asteroid bob = new Asteroid();
+Bullet guy = new Bullet(joe.getCenterX(), joe.getCenterY(), joe.getDirection());
 
 
 public void settings(){
@@ -57,6 +58,8 @@ public void draw()
   }
   joe.move();
   joe.show();
+  guy.move();
+  guy.show();
 }
 
 void keyPressed(){
