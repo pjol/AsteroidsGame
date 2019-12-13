@@ -19,7 +19,7 @@ class Spaceship extends Floater
       myDirectionY = 0;
     }
     public double getDirection(){
-      return(myPointDirection);
+      return(myPointDirection * PI / 180);
     }
     public double getCenterX(){
       return(myCenterX);
